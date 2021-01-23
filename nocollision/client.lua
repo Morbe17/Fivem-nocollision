@@ -19,7 +19,6 @@ AddEventHandler("turnOffCollision", function(currentVehicle)
 
 end)
 
-
 function toggleCollision(starter, veh)
     Citizen.CreateThread(function()
         while starter do
@@ -29,8 +28,8 @@ function toggleCollision(starter, veh)
     
             for k,v in pairs(vehList) do
                 local distance = GetDistanceBetweenCoords(GetEntityCoords(veh), GetEntityCoords(v), false) 
-                if distance < 10 then
-                    SetEntityNoCollisionEntity(veh, v, true)
+                if distance < 10 and veh ~= v then
+                    SetEntityNoCollisionEntity(v, veh, true)
                 end
             end
         end
